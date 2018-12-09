@@ -20,21 +20,19 @@ public class GridButtonPanel {
     }
 
     private JToggleButton createGridButton(final int row, final int col) {
-        final JToggleButton b = new JToggleButton("r" + row + ",c" + col);
+        final JToggleButton b = new JToggleButton( row + "," + col);
         b.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 JToggleButton gb = GridButtonPanel.this.getGridButton(row, col);
-                System.out.println("r" + row + ",c" + col
-                    + " " + (b == gb)
-                    + " " + (b.equals(gb)));
+                System.out.println( row + "," + col);
             }
         });
         return b;
     }
 
-    private JPanel createGridPanel() {
+    JPanel createGridPanel() {
         JPanel p = new JPanel(new GridLayout(N, N));
         for (int i = 0; i < N * N; i++) {
             int row = i / N;
