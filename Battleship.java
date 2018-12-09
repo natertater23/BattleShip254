@@ -1,3 +1,4 @@
+import java.awt.EventQueue;
 import java.util.Scanner;
 
 public class Battleship
@@ -6,15 +7,23 @@ public class Battleship
       
     public static void main(String[] args)
     {
+        EventQueue.invokeLater(new Runnable() {
+
+            @Override
+            public void run() {
+                new GridButtonPanel().display();
+            }
+        });
+    	
         System.out.println("JAVA BATTLESHIP - ** Anthony Cardenas & Justin Castillo **");  
         
         System.out.println("\nPlayer SETUP:");
         Player userPlayer = new Player();
-        setup(userPlayer);
+        setupComputer(userPlayer);
         
         System.out.println("Computer SETUP...DONE...PRESS ENTER TO CONTINUE...");
         reader.nextLine();
-        reader.nextLine();
+       reader.nextLine();
         Player computer = new Player();
         setupComputer(computer);
         System.out.println("\nCOMPUTER GRID (FOR DEBUG)...");
