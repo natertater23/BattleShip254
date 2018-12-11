@@ -31,10 +31,10 @@ public class GridButtonPanel {
         });
         return b;
     }
-    public JToggleButton getRow() {
+    public int getRow() {
     	
     }
-    public JToggleButton getCol() {
+    public int getCol() {
     	
     }
     JPanel createGridPanel() {
