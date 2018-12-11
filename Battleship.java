@@ -22,13 +22,13 @@ public class Battleship
         {
             comp.oppGrid.markHit(row, col);
             user.playerGrid.markHit(row, col);
-            return ("COMP HIT AT " + convertIntToLetter(row) + convertCompColToRegular(col));
+            return ("COMP HIT AT " +row +", " + convertCompColToRegular(col));
         }
         else
         {
             comp.oppGrid.markMiss(row, col);
             user.playerGrid.markMiss(row, col);
-           return ("COMP MISS AT " + convertIntToLetter(row) + convertCompColToRegular(col));
+           return ("COMP MISS AT " + row + ", " +convertCompColToRegular(col));
         }
         
         
@@ -73,13 +73,13 @@ public class Battleship
         {
             p.oppGrid.markHit(row, col);
             opp.playerGrid.markHit(row, col);
-            return "** USER HIT AT " + row + col + " **";
+            return "HIT";
         }
         else
         {
             p.oppGrid.markMiss(row, col);
             opp.playerGrid.markMiss(row, col);
-            return "** USER MISS AT " + row + col + " **";
+            return "MISS";
         }
     }
     
