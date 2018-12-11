@@ -17,6 +17,8 @@ import java.awt.Button;
 import javax.swing.JLabel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
+
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 
@@ -25,7 +27,10 @@ public class GUI extends JFrame implements ActionListener {
 	private JPanel contentPane;
 	private JTextField textField;
 	private GridButtonPanel grid =  new GridButtonPanel();
-
+	private Battleship bs = new Battleship();
+	private Player userPlayer = new Player();
+	private Player computer = new Player();
+	static GUI frame;
 	/**
 	 * Launch the application.
 	 */
@@ -33,7 +38,7 @@ public class GUI extends JFrame implements ActionListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GUI frame = new GUI();
+					frame = new GUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -55,6 +60,11 @@ public class GUI extends JFrame implements ActionListener {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+
+		bs.setupComputer(userPlayer);//random ship placement
+        
+        bs.setupComputer(computer);//random ship placement
+      
 		
 	
 		
@@ -68,52 +78,65 @@ public class GUI extends JFrame implements ActionListener {
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-	   
-
+		JLabel lblNewLabel = new JLabel("Points: ");
+		lblNewLabel.setBounds(344, 432, 120, 23);
+		contentPane.add(lblNewLabel);
 		
-
+		JLabel lblComputerPoints = new JLabel("Computer Points:");
+		lblComputerPoints.setBounds(488, 436, 120, 14);
+		contentPane.add(lblComputerPoints);
 		
-		
+		JLabel lblToWin = new JLabel("17 to win");
+		lblToWin.setBounds(418, 418, 46, 14);
+		contentPane.add(lblToWin);
+		 for (int i = 0; i < 10 * 10; i++) {
+	            int row = i / 10;
+	            int col = i % 10;
+	            JToggleButton gb = grid.getGridButton(row, col);
+	            gb.addActionListener(this);
+		 }
 	}
+	
+	@Override
 	public void actionPerformed(ActionEvent e) { 
+		System.out.println("yes");
 		Object source = e.getSource(); // source is button pressed
 		//Image hit = ;
 		//Image miss = ;
-		Battleship bs = new Battleship();
-		Player userPlayer = new Player();
-		bs.setupComputer(userPlayer);//random ship placement
-        
-        Player computer = new Player();
-        bs.setupComputer(computer);//random ship placement
-      
+		
         JToggleButton btn = grid.getGridButton(grid.getRow(source),grid.getCol(source));
+        btn.setEnabled(false);
         String result = "";
         String compResult = "";
-        while(true)
-        {
+      
           
          
             result = bs.askForGuess(userPlayer, computer,grid.getRow(source),grid.getCol(source));
-            textField.add(result); // add to textField 
-        
+            System.out.println(result); // add to textField 
+         
             if (computer.playerGrid.hasLost())
             {
-                textField.add("HIT!...COMPUTER LOSES"); //add to textField
-                break;
+                System.out.println("HIT!...COMPUTER LOSES"); //add to textField
+                frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+                
             }
             
-            textField.add("\nCOMPUTER IS MAKING GUESS..."); //add to textField
+            System.out.println("\nCOMPUTER IS MAKING GUESS..."); //add to textField
               
               
             compResult = bs.compMakeGuess(computer, userPlayer);
-            textField.add(compResult); //add to textField
+            //add time delay
+            System.out.println(compResult); //add to textField
             
             if (userPlayer.playerGrid.hasLost())
             {
-                textField.add("COMPUTER HITS!...USER LOSES"); //add to textField
-                break;
+                System.out.println("COMPUTER HITS!...USER LOSES"); //add to textField
+                //add time delay
+                frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+                
             }
             
         }
+        
 	}
-}
+
