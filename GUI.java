@@ -67,7 +67,7 @@ public class GUI extends JFrame implements ActionListener {
 		setTitle("Battleship\r\n");
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 635, 564);
+		setBounds(100, 100, 636, 564);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -99,8 +99,8 @@ public class GUI extends JFrame implements ActionListener {
 		lblComputerPoints.setBounds(343, 498, 120, 14);
 		contentPane.add(lblComputerPoints);
 		
-		JLabel lblToWin = new JLabel("17 points to win");
-		lblToWin.setBounds(342, 454, 97, 14);
+		JLabel lblToWin = new JLabel("17 points to win; 5 ships; Lengths: 2,3,3,4,5");
+		lblToWin.setBounds(343, 454, 267, 14);
 		contentPane.add(lblToWin);
 		
 		
@@ -147,7 +147,7 @@ public class GUI extends JFrame implements ActionListener {
             {
             	   textArea.append( "\n" + "HIT!...COMPUTER LOSES"); //add to textField
                 try {
-					TimeUnit.SECONDS.sleep(4);
+					TimeUnit.SECONDS.sleep(6);
 				} catch (InterruptedException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -167,7 +167,7 @@ public class GUI extends JFrame implements ActionListener {
             {
             	   textArea.append( "\nCOMPUTER HITS!...USER LOSES"); //add to textField
                 try {
-					TimeUnit.SECONDS.sleep(4);
+					TimeUnit.SECONDS.sleep(6);
 				} catch (InterruptedException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
