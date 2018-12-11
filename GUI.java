@@ -141,11 +141,6 @@ public class GUI extends JFrame implements ActionListener {
             //add time delay
             System.out.println(compResult); //add to textField
             
-	    if(compResult = "HIT") 
-	        btn.setImage(hit);
-	    else
-	    	btn.setImagae(miss);
-		
 		
             if (userPlayer.playerGrid.hasLost())
             {
