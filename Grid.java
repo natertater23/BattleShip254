@@ -1,7 +1,7 @@
 public class Grid
 {
     private Location[][] grid;
-    private int points;
+    private int points; // 17 is a loss 
 
     // Constants for number of rows and columns.
     public static final int NUM_ROWS = 10;
@@ -26,6 +26,9 @@ public class Grid
         }
     }
     
+    public int getPoints() {
+    	return points;
+    }
     // Mark a hit in this location by calling the markHit method
     // on the Location object.  
     public void markHit(int row, int col)
