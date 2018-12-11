@@ -33,9 +33,11 @@ public class GridButtonPanel {
     }
     public int getRow(Object source) {
     	int row = 0;
+    	int col = 0;
     	for (int i = 0; i < N * N; i++) {
-            row = i % N;
-            if(list.get(i).equals(source)){
+    		 row = i / N;
+             col = i % N;
+            if(getGridButton(row,col).equals(source)){
                 return row;
             }
         }
@@ -43,9 +45,11 @@ public class GridButtonPanel {
     }
     public int getCol(Object source) {
     	  int col = 0;
+    	  int row = 0;
       	for (int i = 0; i < N * N; i++) {
+      		  row = i / N;
               col = i % N;
-              if(list.get(i).equals(source)){
+              if(getGridButton(row,col).equals(source)){
                   return col;
               }
           }
@@ -54,9 +58,10 @@ public class GridButtonPanel {
     
     JPanel createGridPanel() {
         JPanel p = new JPanel(new GridLayout(N, N));
+        
         for (int i = 0; i < N * N; i++) {
             int row = i / N;
-            int col = i % N;
+             int col = i % N;
             JToggleButton gb = createGridButton(row, col);
             list.add(gb);
             p.add(gb);
