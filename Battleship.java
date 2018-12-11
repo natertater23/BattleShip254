@@ -3,52 +3,9 @@ import java.util.Scanner;
 
 public class Battleship
 {
-    public static Scanner reader = new Scanner(System.in);
-      
-    public static void main(String[] args)
-    {
-        
-    	
-        System.out.println("JAVA BATTLESHIP - ** Anthony Cardenas & Justin Castillo **");  
-        
-        System.out.println("\nPlayer SETUP:");
-        Player userPlayer = new Player();
-        setupComputer(userPlayer);
-        
-        System.out.println("Computer SETUP...DONE...PRESS ENTER TO CONTINUE...");
-        reader.nextLine();
-       reader.nextLine();
-        Player computer = new Player();
-        setupComputer(computer);
-        System.out.println("\nCOMPUTER GRID (FOR DEBUG)...");
-        computer.playerGrid.printShips();
-        
-        String result = "";
-        while(true)
-        {
-            System.out.println(result);
-            System.out.println("\nUSER MAKE GUESS:");
-            result = askForGuess(userPlayer, computer);
-            
-            if (userPlayer.playerGrid.hasLost())
-            {
-                System.out.println("COMP HIT!...USER LOSES");
-                break;
-            }
-            else if (computer.playerGrid.hasLost())
-            {
-                System.out.println("HIT!...COMPUTER LOSES");
-                break;
-            }
-            
-            System.out.println("\nCOMPUTER IS MAKING GUESS...");
-              
-              
-            compMakeGuess(computer, userPlayer);
-        }
-    }
+   
     
-    private static void compMakeGuess(Player comp, Player user)
+    static void compMakeGuess(Player comp, Player user)
     {
         Randomizer rand = new Randomizer();
         int row = rand.nextInt(0, 9);
@@ -76,35 +33,33 @@ public class Battleship
         
         
         System.out.println("\nYOUR BOARD...PRESS ENTER TO CONTINUE...");
-        reader.nextLine();
+        //reader.nextLine();
         user.playerGrid.printCombined();
         System.out.println("PRESS ENTER TO CONTINUE...");
-        reader.nextLine();
+        //reader.nextLine();
     }
 
-    private static String askForGuess(Player p, Player opp)
+    static String askForGuess(Player p, Player opp,int row, int col)
     {
         System.out.println("Viewing My Guesses:");
         p.oppGrid.printStatus();
         
-        int row = -1;
-        int col = -1;
+   
         
-        String oldRow = "Z";
-        int oldCol = -1;
+    
         
         while(true)
         {
-            System.out.print("Type in row (A-J): ");
-            String userInputRow = reader.next();
-            userInputRow = userInputRow.toUpperCase();
-            oldRow = userInputRow;
-            row = convertLetterToInt(userInputRow);
+        //    System.out.print("Type in row (A-J): ");
+            //String userInputRow = reader.next(); // row from button
+          //  userInputRow = userInputRow.toUpperCase();
+           // oldRow = userInputRow;
+           // row = convertLetterToInt(userInputRow);
                     
-            System.out.print("Type in column (1-10): ");
-            col = reader.nextInt();
-            oldCol = col;
-            col = convertUserColToProCol(col);
+            //System.out.print("Type in column (1-10): ");
+           // col = reader.nextInt(); // column from button
+          //  oldCol = col;
+          //  col = convertUserColToProCol(col);
                     
             //System.out.println("DEBUG: " + row + col);
                     
@@ -118,72 +73,19 @@ public class Battleship
         {
             p.oppGrid.markHit(row, col);
             opp.playerGrid.markHit(row, col);
-            return "** USER HIT AT " + oldRow + oldCol + " **";
+            return "** USER HIT AT " + row + col + " **";
         }
         else
         {
             p.oppGrid.markMiss(row, col);
             opp.playerGrid.markMiss(row, col);
-            return "** USER MISS AT " + oldRow + oldCol + " **";
+            return "** USER MISS AT " + row + col + " **";
         }
     }
     
-    private static void setup(Player p)
-    {
-        p.playerGrid.printShips();
-        System.out.println();
-        int counter = 1;
-        int normCounter = 0;
-        while (p.numOfShipsLeft() > 0)
-        {
-            for (Ship s: p.ships)
-            {
-                System.out.println("\nShip #" + counter + ": Length-" + s.getLength());
-                int row = -1;
-                int col = -1;
-                int dir = -1;
-                while(true)
-                {
-                    System.out.print("Type in row (A-J): ");
-                    String userInputRow = reader.next();
-                    userInputRow = userInputRow.toUpperCase();
-                    row = convertLetterToInt(userInputRow);
-                    
-                    System.out.print("Type in column (1-10): ");
-                    col = reader.nextInt();
-                    col = convertUserColToProCol(col);
-                    
-                    System.out.print("Type in direction (0(Horizontal) or  1(Vertical): ");
-                    dir = reader.nextInt();
-                    
-                    //System.out.println("DEBUG: " + row + col + dir);
-                    
-                    if (col >= 0 && col <= 9 && row != -1 && dir != -1) // Check valid input
-                    {
-                        if (!hasErrors(row, col, dir, p, normCounter)) // Check if errors will produce (out of bounds)
-                        {
-                            break;
-                        }
-                    }
-    
-                    System.out.println("Invalid location!");
-                }
-            
-                //System.out.println("FURTHER DEBUG: row = " + row + "; col = " + col);
-                p.ships[normCounter].setLocation(row, col);
-                p.ships[normCounter].setDirection(dir);
-                p.playerGrid.addShip(p.ships[normCounter]);
-                p.playerGrid.printShips();
-                System.out.println();
-                System.out.println("You have " + p.numOfShipsLeft() + " remaining ships to place.");
-                
-                normCounter++;
-                counter++;
-            }
-        }
-    }
+   
 
-    private static void setupComputer(Player p)
+    static void setupComputer(Player p)
     {
         System.out.println();
         int counter = 1;
