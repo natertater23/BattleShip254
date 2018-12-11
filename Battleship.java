@@ -5,7 +5,7 @@ public class Battleship
 {
    
     
-    static void compMakeGuess(Player comp, Player user)
+    static String compMakeGuess(Player comp, Player user)
     {
         Randomizer rand = new Randomizer();
         int row = rand.nextInt(0, 9);
@@ -22,26 +22,26 @@ public class Battleship
         {
             comp.oppGrid.markHit(row, col);
             user.playerGrid.markHit(row, col);
-            System.out.println("COMP HIT AT " + convertIntToLetter(row) + convertCompColToRegular(col));
+            return ("COMP HIT AT " + convertIntToLetter(row) + convertCompColToRegular(col));
         }
         else
         {
             comp.oppGrid.markMiss(row, col);
             user.playerGrid.markMiss(row, col);
-            System.out.println("COMP MISS AT " + convertIntToLetter(row) + convertCompColToRegular(col));
+           return ("COMP MISS AT " + convertIntToLetter(row) + convertCompColToRegular(col));
         }
         
         
-        System.out.println("\nYOUR BOARD...PRESS ENTER TO CONTINUE...");
+        //System.out.println("\nYOUR BOARD...PRESS ENTER TO CONTINUE...");
         //reader.nextLine();
-        user.playerGrid.printCombined();
-        System.out.println("PRESS ENTER TO CONTINUE...");
+        //user.playerGrid.printCombined();
+       // System.out.println("PRESS ENTER TO CONTINUE...");
         //reader.nextLine();
     }
 
     static String askForGuess(Player p, Player opp,int row, int col)
     {
-        System.out.println("Viewing My Guesses:");
+       
         p.oppGrid.printStatus();
         
    
