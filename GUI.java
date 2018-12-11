@@ -88,28 +88,32 @@ public class GUI extends JFrame implements ActionListener {
       
         JToggleButton btn = grid.getGridButton(grid.getRow(source),grid.getCol(source));
         String result = "";
+        String compResult = "";
         while(true)
         {
-            System.out.println(result);
-            System.out.println("\nUSER MAKE GUESS:");
+          
+         
             result = bs.askForGuess(userPlayer, computer,grid.getRow(source),grid.getCol(source));
+            System.out.println(result); // add to textField 
         
             if (computer.playerGrid.hasLost())
             {
-                System.out.println("HIT!...COMPUTER LOSES"); // S
+                System.out.println("HIT!...COMPUTER LOSES"); //add to textField
                 break;
             }
             
-            System.out.println("\nCOMPUTER IS MAKING GUESS...");
+            System.out.println("\nCOMPUTER IS MAKING GUESS..."); //add to textField
               
               
-            bs.compMakeGuess(computer, userPlayer);
+            compResult = bs.compMakeGuess(computer, userPlayer);
+            System.out.println(compResult); //add to textField
             
             if (userPlayer.playerGrid.hasLost())
             {
-                System.out.println("COMPUTER HITS!...USER LOSES");
+                System.out.println("COMPUTER HITS!...USER LOSES"); //add to textField
                 break;
             }
+            
         }
 	}
 }
