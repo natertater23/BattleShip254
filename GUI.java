@@ -94,23 +94,23 @@ public class GUI extends JFrame implements ActionListener {
           
          
             result = bs.askForGuess(userPlayer, computer,grid.getRow(source),grid.getCol(source));
-            System.out.println(result); // add to textField 
+            textField.add(result); // add to textField 
         
             if (computer.playerGrid.hasLost())
             {
-                System.out.println("HIT!...COMPUTER LOSES"); //add to textField
+                textField.add("HIT!...COMPUTER LOSES"); //add to textField
                 break;
             }
             
-            System.out.println("\nCOMPUTER IS MAKING GUESS..."); //add to textField
+            textField.add("\nCOMPUTER IS MAKING GUESS..."); //add to textField
               
               
             compResult = bs.compMakeGuess(computer, userPlayer);
-            System.out.println(compResult); //add to textField
+            textField.add(compResult); //add to textField
             
             if (userPlayer.playerGrid.hasLost())
             {
-                System.out.println("COMPUTER HITS!...USER LOSES"); //add to textField
+                textField.add("COMPUTER HITS!...USER LOSES"); //add to textField
                 break;
             }
             
