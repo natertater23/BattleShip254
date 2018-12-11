@@ -31,7 +31,12 @@ public class GridButtonPanel {
         });
         return b;
     }
-
+    public JToggleButton getRow() {
+    	
+    }
+    public JToggleButton getCol() {
+    	
+    }
     JPanel createGridPanel() {
         JPanel p = new JPanel(new GridLayout(N, N));
         for (int i = 0; i < N * N; i++) {
@@ -43,7 +48,7 @@ public class GridButtonPanel {
         }
         return p;
     }
-
+    // not currently used
     void display() {
         JFrame f = new JFrame("Battleship");
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
