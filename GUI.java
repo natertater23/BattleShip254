@@ -67,6 +67,13 @@ public class GUI extends JFrame implements ActionListener {
       
 		
 	
+		ImageIcon hitIcon = new ImageIcon("___");
+		ImageIcon missIcon = new ImageIcon("___");
+
+		Image hit = hitIcon.getImage().getScaledInstance(5,5, java.awt.Image.SCALE_SMOOTH);
+		Image miss = missIcon.getImage().getScaledInstance(5,5, java.awt.Image.SCALE_SMOOTH);
+		
+		
 		
 		JPanel panel = grid.createGridPanel();
 		panel.setBounds(0, 0, 620, 455);
@@ -113,7 +120,13 @@ public class GUI extends JFrame implements ActionListener {
          
             result = bs.askForGuess(userPlayer, computer,grid.getRow(source),grid.getCol(source));
             System.out.println(result); // add to textField 
+		
+	    if(result = "HIT") 
+	   	 btn.setImage(hit);
+	    else
+		 btn.setImagae(miss);
          
+		
             if (computer.playerGrid.hasLost())
             {
                 System.out.println("HIT!...COMPUTER LOSES"); //add to textField
@@ -128,6 +141,12 @@ public class GUI extends JFrame implements ActionListener {
             //add time delay
             System.out.println(compResult); //add to textField
             
+	    if(compResult = "HIT") 
+	        btn.setImage(hit);
+	    else
+	    	btn.setImagae(miss);
+		
+		
             if (userPlayer.playerGrid.hasLost())
             {
                 System.out.println("COMPUTER HITS!...USER LOSES"); //add to textField
