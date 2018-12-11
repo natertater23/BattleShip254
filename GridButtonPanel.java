@@ -31,12 +31,27 @@ public class GridButtonPanel {
         });
         return b;
     }
-    public int getRow() {
-    	
+    
+    public int getRow(Object source) {
+    	int row = 0;
+    	for (int i = 0; i < N * N; i++) {
+            row = i % N;
+            if(list.get(i).equals(source)){
+                return row;
+            }
+        }
     }
-    public int getCol() {
-    	
+        
+    public int getCol(Object source) {
+        int col = 0;
+    	for (int i = 0; i < N * N; i++) {
+            col = i % N;
+            if(list.get(i).equals(source)){
+                return col;
+            }
+        }
     }
+        
     JPanel createGridPanel() {
         JPanel p = new JPanel(new GridLayout(N, N));
         for (int i = 0; i < N * N; i++) {
