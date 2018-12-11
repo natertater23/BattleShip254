@@ -12,6 +12,6 @@ To do this, we added a new class called GUI to the project files. This creates t
 
 For every button pressed, the program asks if it is a hit or miss. The result will either produce a picture of open sea (miss) or a ship getting hit (hit).
 
-The Version Control that we are using is GitHub.
+Version Control: GitHub.
 
-CASE Tools: Eclipse along with Window Builder
+CASE Tools: Eclipse along with WindowsBuilder
