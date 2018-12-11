@@ -14,7 +14,7 @@ public class GridButtonPanel {
     private static final int N = 10;
     private final List<JToggleButton> list = new ArrayList<JToggleButton>();
 
-    private JToggleButton getGridButton(int r, int c) {
+    JToggleButton getGridButton(int r, int c) {
         int index = r * N + c;
         return list.get(index);
     }
@@ -31,7 +31,6 @@ public class GridButtonPanel {
         });
         return b;
     }
-    
     public int getRow(Object source) {
     	int row = 0;
     	for (int i = 0; i < N * N; i++) {
@@ -40,18 +39,19 @@ public class GridButtonPanel {
                 return row;
             }
         }
+    	return -1;
     }
-        
     public int getCol(Object source) {
-        int col = 0;
-    	for (int i = 0; i < N * N; i++) {
-            col = i % N;
-            if(list.get(i).equals(source)){
-                return col;
-            }
-        }
+    	  int col = 0;
+      	for (int i = 0; i < N * N; i++) {
+              col = i % N;
+              if(list.get(i).equals(source)){
+                  return col;
+              }
+          }
+      	return -1;
     }
-        
+    
     JPanel createGridPanel() {
         JPanel p = new JPanel(new GridLayout(N, N));
         for (int i = 0; i < N * N; i++) {
